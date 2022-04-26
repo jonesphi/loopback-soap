@@ -36,24 +36,7 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('StockQuoteServiceStockQuoteBinding.GetQuote = function(GetQuote, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-
-        // check for beginning of REST API in generated code
-        index = code.indexOf("StockQuoteServiceStockQuoteBinding.remoteMethod('GetQuote',"); // eslint-disable-line max-len
-        assert.ok(index > -1);
-
-        // check for utility method that gets JSON value of model at runtime; if available
-        index = code.indexOf('function normalize(parameter) {');
-        assert.ok(index > -1);
-
-        // check that utility method wraps parameter
-        index = code.indexOf('_soapModel.GetQuote(normalize(GetQuote), function (err, response)');// eslint-disable-line max-len
-        assert.ok(index > -1);
 
         // verify generated models against expected
         var expectedModels = readModelJsonSync('stockquote_model.json');
@@ -88,19 +71,7 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('periodictableperiodictableSoap.GetAtomicWeight = function(GetAtomicWeight, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        index = code.indexOf('periodictableperiodictableSoap.GetAtomicNumber = function(GetAtomicNumber, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf("periodictableperiodictableSoap.remoteMethod('GetAtomicWeight'"); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        index = code.indexOf("periodictableperiodictableSoap.remoteMethod('GetAtomicNumber'"); // eslint-disable-line max-len
-        assert.ok(index > -1);
 
         // verify generated models against expected
         var expectedModels = readModelJsonSync('periodictable_model.json');
@@ -131,15 +102,7 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('RPCLiteralServiceRPCLiteralTestBinding.myMethod = function(myMethod, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf("RPCLiteralServiceRPCLiteralTestBinding.remoteMethod('myMethod',"); // eslint-disable-line max-len
-        assert.ok(index > -1);
 
         var expectedModels = path.resolve(__dirname, './results/rpc_literal_model.json');
         expectedModels = require(expectedModels);
@@ -171,15 +134,7 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('foofoo_Binding.fooOp = function(fooRq, callback)');
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf("foofoo_Binding.remoteMethod('fooOp',");
-        assert.ok(index > -1);
 
         // verify generated models against expected
         var expectedModels = readModelJsonSync('foo_model_nested_ref.json');
@@ -210,15 +165,7 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('DummyServiceDummyBinding.Dummy = function(DummyRequest, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf("DummyServiceDummyBinding.remoteMethod('Dummy'");
-        assert.ok(index > -1);
 
         // verify generated models against expected
         var expectedModels = readModelJsonSync('recursive_model.json');
@@ -248,15 +195,7 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('OneWayServiceOneWayBinding.OneWay = function(OneWayRequest, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf("OneWayServiceOneWayBinding.remoteMethod('OneWay',");
-        assert.ok(index > -1);
 
         // verify generated models against expected
         var expectedModels = readModelJsonSync('oneway_model.json');
@@ -292,25 +231,8 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
-
         // TODO [rashmi] Revisit. Currently strong-soap returns xs:any type as 0 element which results in empty properties {} list in the model.
         var generatedModels = helper.generateModels(wsdl, operations);
-
-        // check for API/operation signature in generated code
-        var index = code.indexOf('USZipUSZipSoap12.GetInfoByAreaCode = function(GetInfoByAreaCode, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf('USZipUSZipSoap12.GetInfoByState = function(GetInfoByState, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-
-        // check for beginning of REST API in generated code
-        index = code.indexOf("USZipUSZipSoap12.remoteMethod('GetInfoByState',");
-        assert.ok(index > -1);
-
-        // check for beginning of REST API in generated code
-        index = code.indexOf("type: 'GetInfoByState'");
-        assert.ok(index > -1);
 
         var expectedModels = readModelJsonSync('anytype_model.json');
         expect(generatedModels).to.deep.equal(expectedModels);
@@ -340,83 +262,10 @@ describe('Generate APIs and models with WSDLs containing ', function() {
           'operations': operations,
         };
 
-        var code = helper.generateRemoteMethods(apiData);
         var generatedModels = helper.generateModels(wsdl, operations);
 
-        // check for API/operation signature in generated code
-        var index = code.indexOf('AddressLookupSoap.CheckAddressW2lines = function(CheckAddressW2lines, callback)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        // check for beginning of REST API in generated code
-        index = code.indexOf("AddressLookupSoap.remoteMethod('CheckAddressW2lines',");
-        assert.ok(index > -1);
         var expectedModels = readModelJsonSync('opname_withnumber_model.json');
         expect(generatedModels).to.deep.equal(expectedModels);
-
-        done();
-      });
-  });
-  it('DataSource checks', function(done) {
-    var options = {};
-    var operations = [];
-    var loadedWsdl;
-    var url = 'http://ws.cdyne.com/psaddress/addresslookup.asmx?wsdl';
-
-    WSDL.open(url, options,
-      function(err, wsdl) {
-        var operation = wsdl.definitions.bindings.AddressLookupSoap.operations.CheckAddressW2lines; // eslint-disable-line max-len
-        operations.push(operation);
-        loadedWsdl = wsdl;
-        var apiData = {
-          // assumes SOAP WebService datasource with name 'soapDS' exists
-          'datasource': 'soapDS',
-          'wsdl': wsdl,
-          'wsdlUrl': url,
-          'service': 'AddressLookup',
-          'binding': 'AddressLookupSoap',
-          'operations': operations,
-        };
-
-        var code = helper.generateRemoteMethods(apiData);
-
-        // check datasource related code from soap connector
-        var index = code.indexOf('var soapDataSource = server.datasources.soapDS;'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        index = code.indexOf("soapDataSource.once('connected', function ()");
-        assert.ok(index > -1);
-        index = code.indexOf('_soapModel.CheckAddressW2lines(normalize(CheckAddressW2lines), function (err, response)'); // eslint-disable-line max-len
-        assert.ok(index > -1);
-        done();
-      });
-  });
-
-  it('Special character in binding or service name', function(done) {
-    var options = {};
-    var operations = [];
-    var loadedWsdl;
-    var url = './wsdls/special_char_test.wsdl';
-
-    WSDL.open(path.resolve(__dirname, url), options,
-      function(err, wsdl) {
-        var bindings = wsdl.definitions.bindings;
-        var myMethod =
-                bindings["-a.b/c`d~e!f@g#h%i^j*k(l)m-n+o=p'q+r;s<t>u,v?w/x"].operations.myMethod;
-        operations.push(myMethod);
-        loadedWsdl = wsdl;
-        var apiData = {
-          // assumes SOAP WebService datasource with name 'soapDS' exists
-          'datasource': 'soapDS',
-          'wsdl': wsdl,
-          'wsdlUrl': url,
-          'service': 'RPCLiteralService',
-          'binding': "-a.b/c`d~e!f@g#h%i^j*k(l)m-n+o=p'q+r;s<t>u,v?w/x",
-          'operations': operations,
-        };
-
-        var code = helper.generateRemoteMethods(apiData);
-
-        // check variable name for the model is created correctly by substituting any special characters not acceptable in javascript variable with _
-        var index = code.indexOf('RPCLiteralService_a_b_c_d_e_f_g_h_i_j_k_l_m_n_o_p_q_r_s_t_u_v_w_x'); // eslint-disable-line max-len
-        assert.ok(index > -1);
 
         done();
       });

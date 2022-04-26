@@ -13,27 +13,6 @@ function getGenerator() {
 }
 
 /**
- * Generate remote methods from soap spec
- * @param {Object} spec
- * @param {Object} options
- * @returns {String}
- */
-exports.generateRemoteMethods = function(spec, options) {
-  return getGenerator().generateRemoteMethods(spec, options);
-};
-
-/**
- * Generate remote methods for an array of operations
- * @param {String|Number} version
- * @param {String} modelName
- * @param {BaseOperation[]} operations
- * @returns {String}
- */
-exports.generateCode = function(version, modelName, operations) {
-  return getGenerator().generateCodeForOperations(modelName, operations);
-};
-
-/**
  * Generate model definitions
  * @param {Object} spec soap spec
  * @param {Object} options
